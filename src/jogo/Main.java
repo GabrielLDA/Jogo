@@ -1,6 +1,8 @@
 package jogo;
 
 
+
+
 import jplay.GameImage;
 import jplay.Keyboard;
 import jplay.URL;
@@ -20,7 +22,6 @@ public class Main {
 			
 			if(teclado.keyDown(Keyboard.ENTER_KEY)) {
 				new Cenario1(janela);
-				
 			}
 		}
 	}
