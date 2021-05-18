@@ -2,6 +2,7 @@ package jogo;
 
 
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.util.Vector;
 
 import jplay.GameObject;
@@ -23,6 +24,14 @@ public class Player extends Sprite{
 		this.x = x;
 		this.y = y;
 		this.setTotalDuration(2000);
+	}
+	
+	ControleTiros tiros = new ControleTiros();
+	public void atirar(Window janela, Scene cena, Keyboard teclado) {
+		
+		if(teclado.keyDown(KeyEvent.VK_A)) {
+			tiros.adicionaTiro(x + 5, y + 12, direcao, cena);
+		}tiros.run();
 	}
 	
 	public void andar(Window janela, Keyboard teclado) {
