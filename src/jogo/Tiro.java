@@ -28,7 +28,6 @@ public class Tiro extends Sprite{
 			}
 			movendo = true;
 		}
-		
 		if(caminho == RIGHT) {
 			this.x += VELOCIDADE_TIRO;
 			if(direcao != 2) {
@@ -56,6 +55,5 @@ public class Tiro extends Sprite{
 			movendo = false;
 		}
 	}
-
 }
 

@@ -1,21 +1,18 @@
 package jogo;
 
 
-import java.awt.Point;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
-import java.util.Vector;
 
-import jplay.GameObject;
 import jplay.Keyboard;
 import jplay.Scene;
-import jplay.Sprite;
-import jplay.TileInfo;
 import jplay.URL;
 import jplay.Window;
 
-public class Player extends Sprite{
+public class Player extends Ator{
 
-	private double velocidade = 1.3;
+	private double velocidade = 1;
 	private int direcao = 3;
 	private boolean andando = false;
 	
@@ -27,15 +24,16 @@ public class Player extends Sprite{
 	}
 	
 	ControleTiros tiros = new ControleTiros();
-	public void atirar(Window janela, Scene cena, Keyboard teclado) {
+	public void atirar(Window janela, Scene cena, Keyboard teclado, Inimigo inimigo) {
 		
 		if(teclado.keyDown(KeyEvent.VK_A)) {
 			tiros.adicionaTiro(x + 5, y + 12, direcao, cena);
-		}tiros.run();
+		}tiros.run(inimigo);
 	}
 	
+	
 	public void andar(Window janela, Keyboard teclado) {
-		
+
 		
 		if(teclado.keyDown(Keyboard.LEFT_KEY)) {
 			if(this.x > 0) {
@@ -79,56 +77,15 @@ public class Player extends Sprite{
 			andando = false;
 		}
 	}
-	/*Controle controle = new Controle(); 
-	
-	public void caminho(Scene cena) {
-		Point min = new Point((int)this.x, (int)this.y);
-		Point max = new Point((int)this.x + this.width, (int)this.y + this.height);
-	
-		Vector<?>tiles = cena.getTilesFromPosition(min, max);
-		for (int i = 0; i < tiles.size(); i++) {
-			TileInfo tile = (TileInfo)tiles.elementAt(i);
-			
-			if(controle.colisao(this, tile) == true) {
-				if(colisaoVert(this, tile)) {
-					if(tile.y + tile.height - 2 < this.y) {
-						this.y = tile.y + tile.height; 
-					}
-					else if(tile.y > this.y + this.height - 2) {
-						this.y = tile.y - this.height;
-					}
-				}
-				if(colisaoHoriz(this, tile)) {
-					if(tile.x > this.x + this.width) {
-						this.x = tile.x - this.width;
-					}
-					else {
-						this.x = tile.x + tile.width;
-					}
-				}
-				
-			}
-		}
-	}
-	
-	private boolean colisaoVert(GameObject obj, GameObject obj2) {
-		if(obj2.x + obj2.width <= obj.x) {
-			return false;
-		}if(obj.x + obj.width <= obj2.x) {
-			return false;
-		}
-		return true;
-	}
-	private boolean colisaoHoriz(GameObject obj, GameObject obj2) {
-		if(obj2.y + obj2.height <= obj.y) {
-			return false;
-		}if(obj.y + obj.height <= obj2.y) {
-			return false;
-		}
-		return true;
-	  }*/
-	
-	
+
+	Font f = new Font("arial", Font.BOLD, 30);
+
+	public static double energia = 100; 
+	public void energia(Window janela) {
+		janela.drawText("Energia: " + Player.energia, 30, 30, Color.green, f);
+		
+	} 
+
 
 	
 }
